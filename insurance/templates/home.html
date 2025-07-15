@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Insurance Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+        footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 999;
+    }
+    .bg-1{
+        text-align: center;
+        background: linear-gradient(to right, #5078fa, #ffffff);
+    }
+        .bg-2{
+        text-align: center;
+        background: linear-gradient(to right, #ecf5c8, #ffffff);
+    }
+      .arrow-icon {
+    font-size: 1.2rem;
+    color: #555;
+    flex-shrink: 0;
+  }
+
+  .card-header {
+    cursor: pointer;
+    background-color: #f8f9fa;
+    padding: 1rem;
+  }
+
+  @media (max-width: 576px) {
+    .arrow-icon {
+      font-size: 1rem;
+    }
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><b>InsureNow</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navMenu">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'aboutus' %}">About Us</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'loginpage' %}">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="jumbotron text-center bg-light">
+  <h1 class="display-4">Secure Your Life Today</h1>
+  <p class="lead">Affordable insurance plans that protect what matters most.</p>
+  <a href="#" class="btn btn-primary btn-lg" style="border-radius: 45%;">Get a Quote</a>
+</div>
+
+<!-- login and signup section  -->
+<div class="container-fluid py-5 bg-2">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- Left side: Explore More button -->
+      <div class="col-12 col-md-6 text-center text-md-left mb-4 mb-md-0">
+        <!-- <a href="#explore" class="btn btn-primary btn-lg">Explore More with us</a><br><br> -->
+        <b> By understanding these exclusions, you can have a clearer picture of your coverage’s limitations and make informed decisions about additional protection or alternative solutions. Taking the time to thoroughly comprehend the exclusions
+             can help ensure that you have the appropriate level of insurance coverage for your needs.If you want more details just click below</b><br><br>
+        <a href="#explore" class="btn btn-outline-primary btn-lg">Explore More with us</a>     
+      </div>
+
+      <!-- Right side: Responsive image -->
+      <div class="col-12 col-md-6 text-center text-md-right">
+        <img 
+          src="https://images.unsplash.com/photo-1634757439914-23b8acb9d411?q=80&w=988&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          alt="Money House" 
+          class="img-fluid" 
+          style="max-width: 350px; border-radius: 20px;"
+        >
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Plans Section -->
+<div class="container my-5">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">Health Insurance</h5>
+          <p class="card-text">Cover medical expenses for you and your family.</p>
+          <a href="{% url 'healthinsurance' %}" class="btn btn-outline-primary">About this plan</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mt-4 mt-md-0">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">Life Insurance</h5>
+          <p class="card-text">Secure your loved ones’ future with a term plan.</p>
+          <a href="#" class="btn btn-outline-primary">About this Plan</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mt-4 mt-md-0">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">Vehicle Insurance</h5>
+          <p class="card-text">Protect your car or bike against damage and theft.</p>
+          <a href="{% url 'vehicle_health_insurance' %}" class="btn btn-outline-primary">About this Plan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question section  -->
+<div class="container">
+<h5>Questions</h5>
+  <div id="faqAccordion">
+    <div class="card mb-2">
+      <div class="card-header" data-toggle="collapse" data-target="#faq1">
+        <h4><span class="faq-header">How does this system work?</span></h4>
+        <span class="arrow-icon">&#9660;</span>
+      </div>
+      <div id="faq1" class="collapse" data-parent="#faqAccordion">
+        <div class="card-body">
+          The system will make an agreement between you (the policyholder) and an insurance company with your permission only. You pay a regular fee called a premium, and in return, the company promises to cover specific financial risks — like accidents, illness, damage, or loss.
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-2">
+      <div class="card-header" data-toggle="collapse" data-target="#faq2">
+        <h4><span class="faq-header">How much is the risk?</span></h4>
+        <span class="arrow-icon">&#9660;</span>
+      </div>
+      <div id="faq2" class="collapse" data-parent="#faqAccordion">
+        <div class="card-body">
+          In insurance 'risk' means “What is the chance something bad will happen, and how much will it cost?”.So in insurance is all upon taking fundamental rights for you 
+          and your family to keep your family safe
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-2">
+      <div class="card-header" data-toggle="collapse" data-target="#faq3">
+       <h4><span class="faq-header">Do I need special skills?</span></h4>
+       <span class="arrow-icon">&#9660;</span>
+      </div>
+      <div id="faq3" class="collapse" data-parent="#faqAccordion">
+        <div class="card-body">
+          You don’t need any special skills to use or buy insurance. Most insurance processes are simple and designed for everyday people. You can easily purchase a policy online or through an agent, pay your premiums, and file a claim if needed — all without technical knowledge.
+           Basic reading skills and access to a smartphone or bank account can make things easier.
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-2">
+      <div class="card-header" data-toggle="collapse" data-target="#faq4">
+       <h4><span class="faq-header">How do I get started?</span></h4>
+       <span class="arrow-icon">&#9660;</span>
+      </div>
+      <div id="faq4" class="collapse" data-parent="#faqAccordion">
+        <div class="card-body">
+Getting started with insurance is simple and straightforward. First, decide what type of insurance you need — it could be health, life, car, travel, or home insurance depending on your situation. Once you've decided, research a few trusted insurance companies online or talk to a licensed agent. Compare plans based on coverage, premium, claim process, and customer reviews. After choosing the best one, you can apply online or offline by providing 
+some basic details like your name, age, ID proof, and sometimes a health or vehicle check.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<br><br>
+
+
+<!-- feature section -->
+  <div class="container mt-5">
+    <div class="row text-center">
+      <div class="col-md-4 feature-box">
+        <div class="feature-icon mb-3"><i class="fa-solid fa-circle-check fa-4x"></i></div>
+        <h5>Profit</h5>
+        <p class="text-muted">AI Driven</p>
+        <p>Maximize earnings effortlessly.</p>
+      </div>
+      <div class="col-md-4 feature-box">
+        <div class="feature-icon mb-3"><i class="fa-solid fa-money-check-dollar fa-4x"></i></div>
+        <h5>Earn</h5>
+        <p class="text-muted">Daily Payouts</p>
+        <p>Consistent income, every single day.</p>
+      </div>
+      <div class="col-md-4 feature-box">
+        <div class="feature-icon mb-3"><i class="fa-solid fa-shield fa-4x"></i></div>
+        <h5>Safe</h5>
+        <p class="text-muted">Legal Methods</p>
+        <p>Compliant strategies for peace of mind.</p>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br>
+
+  <!-- image section -->
+  <div class="container-fluid bg-1">
+  <br><br>
+  <h3 class="text-center">TRANSFORM YOUR FINANCIAL FUTURE</h3>
+  <br>
+  <img 
+    src="https://images.unsplash.com/photo-1604594849809-dfedbc827105?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+    alt="Finance Image" 
+    class="img-fluid w-100" style="max-width: 900px; height: auto; border-radius: 30px;"
+  >
+  <br><br>
+</div>
+
+
+<br><br><br><br>
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+  <p>&copy; 2025 InsureNow. All rights reserved.</p>
+</footer>
+</body>
+</html>

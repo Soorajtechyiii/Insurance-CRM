@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Document</title>
+</head>
+<style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 999;
+    }
+</style>
+<body>
+    <!--navbar section  -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">InsureNow</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navMenu">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'aboutus' %}">About Us</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'loginpage' %}">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- paragraph section -->
+ <div class="container bg-1">
+    <br><br><br>
+    <h1 class="text-center"><b>HEALTH INSURANCE</b></h1>
+    <p>
+      At Our Insurance Company, your well-being is at the heart of everything we do. We are dedicated to making quality healthcare accessible, 
+      affordable, and worry-free for individuals, families, and businesses across the country.
+
+With a deep understanding of the healthcare landscape, we offer comprehensive health insurance plans designed 
+to meet your unique needs — whether you're looking for individual coverage,
+ family protection, or group plans for your employees.  
+    </p><br>
+    <h6>Oru services includes:</h6><br>
+    <ul>
+        <li>Individual & Family Health Plans</li>
+        <li>Senior & Medicare Supplement Plans</li>
+        <li>Corporate Group Health Insurance</li>
+        <li>Critical Illness and Wellness Benefits</li>
+        <li>Cashless Hospital Network & 24/7 Support</li>
+    </ul>
+    <p>Our goal is to not just insure you-but to empower you to live happier life.From preventive care to emeregency Support.</p>
+    <img src="https://images.unsplash.com/photo-1666887360974-5cab0bd3ef52?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" height="500px" width="95%">
+    <br><br>
+    <h5>Why choosing us?</h5>
+    <ul>
+        <li>Nationwide network</li>
+        <li>Easy claim process</li>
+        <li>Affordable premium with flexible plans</li>
+        <li>Digital access to policy</li>
+    </ul>
+      
+     <br><br><br><br>
+<!-- footer section -->
+<footer class="bg-dark text-white text-center py-3">
+<p>&copy; 2025 InsureNow. All rights reserved.</p>
+</footer> 
+ </div>
+</body>
+</html>

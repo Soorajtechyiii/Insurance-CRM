@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Client</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 999;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: rgba(244, 241, 241, 0.86);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(252, 248, 248, 0.97);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><b>InsureNow</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarMenu">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="{% url 'userhome' %}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'useredit' %}">Edit Profile</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'client' user.id %}">Client section</a></li>
+      <li class="nav-item"><a class="nav-link text-danger" href="{% url 'logoutuser' %}">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Client Form -->
+<div class="form-container">
+  <h2 class="text-center">ADD CLIENT DETAILS</h2>
+  <form method="POST" action="{% url 'user_client' %}">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label>Name:</label>
+      <input type="text" class="form-control" name="name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Email address:</label>
+      <input type="text" class="form-control" name="email" id="email" required>
+      <small id="email-message" class="form-text text-warning"></small>
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number:</label>
+      <input type="number" class="form-control" name="phone_number" id="phone_number" required>
+      <small id="phone-message" class="form-text text-warning"></small>
+    </div>
+
+    <div class="form-group">
+      <label>Aadhar Card:</label>
+      <input type="text" class="form-control" name="aadhar" id="aadhar" required>
+      <small id="aadhar-message" class="form-text text-warning"></small>
+    </div>
+
+    <div class="form-group">
+      <label>PAN Card:</label>
+      <input type="text" class="form-control" name="pan" id="pan" required>
+      <small id="pan-message" class="form-text text-warning"></small>
+    </div>
+
+    <div class="form-group">
+      <label>Yearly Income:</label>
+      <input type="number" class="form-control" name="income" required>
+    </div>
+
+    <div class="form-group">
+      <label>Children:</label><br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="children" value="Yes" required>
+        <label class="form-check-label">Yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="children" value="No">
+        <label class="form-check-label">No</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Any other policy:</label><br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="other_policy" value="Yes" required>
+        <label class="form-check-label">Yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="other_policy" value="No">
+        <label class="form-check-label">No</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Address:</label>
+      <textarea class="form-control" name="address" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Job:</label>
+      <input type="text" class="form-control" name="job" required>
+    </div>
+
+    <div class="form-group">
+      <label>Education Qualification:</label>
+      <input type="text" class="form-control" name="education" required>
+    </div>
+
+    <div class="form-group">
+      <label>Date of Birth:</label>
+      <input type="date" class="form-control" name="dob" required>
+    </div>
+
+    <div class="form-group">
+      <label>Client Rating (0 - 100):</label>
+      <input type="number" name="rate" class="form-control" min="0" max="100" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+  </form>
+
+  <br>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+  <p>&copy; 2025 InsureNow. All rights reserved.</p>
+</footer>
+
+<!-- Live Validation Script -->
+<script>
+$(document).ready(function () {
+  // ✅ Email validation
+  $('#email').on('input', function () {
+    const email = $(this).val().trim();
+    const message = $('#email-message');
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com)$/;
+
+    if (!pattern.test(email)) {
+      message.text("❌ Invalid format (e.g. abc@example.com)").removeClass().addClass("form-text text-danger");
+      return;
+    }
+
+    $.ajax({
+      url: '/validate-email-client/',
+      data: { email: email },
+      dataType: 'json',
+      success: function (data) {
+        if (data.exists) {
+          message.text("⚠️ Email already registered").removeClass().addClass("form-text text-warning");
+        } else {
+          message.text("✅ Email is available").removeClass().addClass("form-text text-success");
+        }
+      }
+    });
+  });
+
+  // ✅ Phone number validation
+  $('#phone_number').on('input', function () {
+    const phone = $(this).val().trim();
+    const message = $('#phone-message');
+
+    if (!/^\d{10}$/.test(phone)) {
+      message.text("❌ Enter a valid 10-digit number").removeClass().addClass("form-text text-danger");
+      return;
+    }
+
+    $.ajax({
+      url: '/validate-phone-client/',
+      data: { phone: phone },
+      dataType: 'json',
+      success: function (data) {
+        if (data.exists) {
+          message.text("⚠️ Phone number already exists").removeClass().addClass("form-text text-warning");
+        } else {
+          message.text("✅ Phone number is available").removeClass().addClass("form-text text-success");
+        }
+      }
+    });
+  });
+
+  // ✅ Aadhar validation with format
+  $('#aadhar').on('input', function () {
+    let value = $(this).val().replace(/\D/g, '').slice(0, 12);
+    let formatted = value.replace(/(\d{4})(\d{4})(\d{0,4})/, "$1 $2 $3").trim();
+    $(this).val(formatted);
+
+    const message = $('#aadhar-message');
+    const pattern = /^\d{4}\s\d{4}\s\d{4}$/;
+
+    if (!pattern.test(formatted)) {
+      message.text("❌ Invalid format. Use 1234 5678 9012").removeClass().addClass("form-text text-danger");
+      return;
+    }
+
+    $.ajax({
+      url: '/validate-aadhar/',
+      data: { aadhar: formatted },
+      dataType: 'json',
+      success: function (data) {
+        if (data.exists) {
+          message.text("❌ Aadhar already exists").removeClass().addClass("form-text text-danger");
+        } else {
+          message.text("✅ Aadhar is valid and available").removeClass().addClass("form-text text-success");
+        }
+      }
+    });
+  });
+});
+// ✅ PAN card validation
+$('#pan').on('input', function () {
+  const pan = $(this).val().trim().toUpperCase();
+  $(this).val(pan);  // force uppercase
+
+  const panMessage = $('#pan-message');
+  const panFormat = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+
+  if (!panFormat.test(pan)) {
+    panMessage.text("❌ Invalid PAN format (e.g. ABCDE1234F)").removeClass().addClass('form-text text-danger');
+    return;
+  }
+
+  $.ajax({
+    url: '/validate-pan/',
+    data: { pan: pan },
+    dataType: 'json',
+    success: function (data) {
+      if (data.exists) {
+        panMessage.text("⚠️ PAN already registered").removeClass().addClass('form-text text-warning');
+      } else {
+        panMessage.text("✅ PAN is valid and available").removeClass().addClass('form-text text-success');
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>

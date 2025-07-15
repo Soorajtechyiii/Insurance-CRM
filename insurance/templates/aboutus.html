@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Document</title>
+    <style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 999;
+    } 
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h2, h4 {
+      color: #343a40;
+    }
+    .section-title {
+      border-left: 5px solid #007bff;
+      padding-left: 10px;
+      margin-top: 30px;
+    }
+    .content-section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    .bg-2{
+        background-color: rgb(79, 40, 222);
+        margin-top: 01%;
+        padding-top: 6%;
+        padding-bottom: 4%;
+    }
+  </style>  
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><b>InsureNow</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navMenu">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'aboutus' %}">About Us</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'loginpage' %}">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+   <marquee><h5 class="text-center" style="color: rgb(233, 68, 68);">You are here:How to Read the different parts of an insurance policy </h5></marquee>
+</div>
+<br>
+<div class="container">
+<h1 class="text-center"><b>About Us</b></h1>
+<p>We are the leading insurance company with a client rate of over 1million in per year.We are happy that our organization will be a part of 
+    every citizen in the country. <br>
+  At SecureLife Insurance, we believe in protecting what matters most — your family, your future, and your peace of mind.
+   With decades of experience in the insurance industry, our mission is simple: to provide reliable, transparent, 
+   and tailored insurance solutions that help you feel confident no matter what life brings.
+Founded with the belief that everyone deserves access to quality coverage, we offer a wide range of policies.
+</p>
+<p>We are offering wide range of policies including</p>
+<ul>
+    <li>Life insurance</li>
+    <li>Health insurance</li>
+    <li>Vehicle insurance</li>
+    <li>Home insurance</li>
+    <li>Travel insurance</li>
+    <li>Business and Commercial Coverage</li>
+</ul>
+<p>Our dedicated team of experts is here to guide you every step of the way — 
+    from choosing the right plan to assisting you with claims. We pride ourselves on building lasting relationships, not just policies.
+
+With SecureLife,
+ you’re not just buying insurance. You're gaining a partner committed to your safety, your goals, and your future. </p>
+</div>
+<br>
+<div class="container">
+
+  <div class="container py-5">
+    <h1 class="text-center mb-4"><b>Terms and conditions</b></h1>
+    <h2 class="text-center mb-4">How To Read the Different Parts of an Insurance Policy</h2>
+
+    <div class="content-section">
+      <p>Are you feeling overwhelmed by the multitude of components in your insurance policy? Don’t fret, you’re not alone. Insurance policies can be intricate and perplexing, but it’s crucial to comprehend what your policy covers and what it might overlook. Knowing how to read the different parts of an insurance policy is important, so you can completely grasp your insurance policy in and out.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">Declarations Page</h4>
+      <p>This page acts as a comprehensive summary of your policy, providing essential information that will differentiate your insurance policy from others. It includes names of people and assets the policy covers, policy number, coverage amounts, deductibles, policy details, endorsements, and discounts. It serves as a quick reference point to access your key insurance details.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">Insuring Agreement</h4>
+      <p>This section outlines what risks your policy covers and excludes. It defines what services the insurance policy promises under the premium paid. Understanding it helps you know your protection level and make informed decisions.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">Limitations and Exclusions</h4>
+      <p>These clauses define what your insurance does not cover and the financial limits of what it will pay. Understanding these helps you assess coverage gaps and plan for additional protection if needed.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">General Conditions</h4>
+      <p>This includes your responsibilities as a policyholder, like reporting claims promptly. It may also require actions like inspections before repairs. Understanding conditions helps avoid rejected claims.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">Endorsements and Riders</h4>
+      <p>These are extra provisions added to your policy to customize your coverage. They might expand or limit your protection, so understanding them ensures your policy meets your needs.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">Definitions and Terminology</h4>
+      <p>This section explains technical terms used in the policy. Knowing these helps you understand your rights, obligations, and policy scope clearly.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">Coverage Limits</h4>
+      <p>These are the maximum amounts the insurer will pay for a covered loss. Understanding these helps avoid financial surprises and ensures your policy is sufficient for your needs.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">Insurance Deductibles</h4>
+      <p>Deductibles are the amounts you pay out of pocket before insurance kicks in. Knowing your deductible amount helps you manage your financial responsibilities better.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">Special Provisions</h4>
+      <p>These are unique conditions or limits that may apply to your policy. Understanding them helps avoid surprises and ensures your coverage works as intended.</p>
+    </div>
+
+    <div class="content-section">
+      <h4 class="section-title">In Conclusion</h4>
+      <p>An insurance policy is meant to protect you, but only if you understand it. By learning to read each section and seeking help when needed, you can make sure your coverage fits your real needs. Review your policy early, fix gaps, and stay informed to ensure it truly works for you. Don’t hesitate to consult your insurer or public adjusters like AmeriClaims if anything is unclear.</p>
+    </div>
+  </div>
+</div>
+
+  <div class="container-fluid bg-2">
+    <h2 class="text-center text-white">We work for <b>YOU</b>,not for the company.</h2>
+    <p class="text-center text-white">Contact us for more information</p>
+  </div>
+
+  <br><br><br>
+  <!-- footer section -->
+  <footer class="bg-dark text-white text-center py-3">
+  <p>&copy; 2025 InsureNow. All rights reserved.</p>
+  </footer>
+    
+</div>
+</body>
+</html>

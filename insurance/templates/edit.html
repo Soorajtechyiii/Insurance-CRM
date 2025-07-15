@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Edit Page</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 999;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: rgba(248, 245, 245, 0.973);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(252, 248, 248, 0.97);
+    }
+  </style>
+</head>
+
+<body>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><b>InsureNow</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarMenu">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="{% url 'adminhome' %}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'add_agent' %}">Add Agent</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'agent_details' %}">Agent Details</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'add_campaign' %}">Add Campaign</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'show_campaign' %}">Campaign</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'client_application_details' %}">Client Application Details</a></li>
+      <li class="nav-item"><a class="nav-link text-danger" href="{% url 'logoutadmin' %}">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- edit form -->
+<div class="form-container">
+  <form id="editForm" action="{% url 'edit_agent' agents.id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2 class="text-center">EDIT SECTION</h2>
+
+    <div class="form-group">
+      <label>Firstname:</label>
+      <input type="text" class="form-control" name="fname" required value="{{ agents.first_name }}">
+    </div>
+
+    <div class="form-group">
+      <label>Lastname:</label>
+      <input type="text" class="form-control" name="lname" required value="{{ agents.last_name }}">
+    </div>
+
+    <div class="form-group">
+      <label>Username:</label>
+      <input type="text" class="form-control" name="uname" id="username" required value="{{ agents.username }}">
+      <small id="username-message" class="form-text text-warning"></small>
+    </div>
+
+    <div class="form-group">
+      <label>Email address:</label>
+      <input type="text" class="form-control" name="email" id="email" required value="{{ agents.email }}">
+      <small id="email-message" class="form-text text-warning"></small>
+    </div>
+
+    <div class="form-group">
+      <label>Phonenumber:</label>
+      <input type="text" class="form-control" name="phonenumber" id="phone" required value="{{ agents.profile.phone_number }}">
+      <small id="phone-message" class="form-text text-warning"></small>
+    </div>
+    <!-- question section -->
+        <div>
+        <label for="">Image:</label>
+        <img src="{{ agents.profile.photo.url }}" alt="" width="13%">
+    </div>
+    <div class="form-group">
+  <label>Change Photo:</label>
+  <input type="file" class="form-control-file" name="photo">
+   </div>
+    <button type="submit" class="btn btn-success btn-block">SAVE</button>
+  </form>
+</div>
+
+<!-- script -->
+<script>
+  $(document).ready(function () {
+    let usernameValid = true;
+    let emailValid = true;
+    let phoneValid = true;
+
+    const currentUsername = "{{ agents.username }}";
+    const currentEmail = "{{ agents.email }}";
+    const currentPhone = "{{ agents.profile.phone_number }}";
+
+    $('#username').on('input', function () {
+      const username = $(this).val();
+      if (username.length > 0) {
+        $.ajax({
+          url: '/validate-username/',
+          data: { 'username': username },
+          dataType: 'json',
+          success: function (data) {
+            if (data.exists && username !== currentUsername) {
+              $('#username-message').text('❌ Username already taken').removeClass('text-success').addClass('text-danger');
+              usernameValid = false;
+            } else {
+              $('#username-message').text('✅ Username is available').removeClass('text-danger').addClass('text-success');
+              usernameValid = true;
+            }
+          }
+        });
+      } else {
+        $('#username-message').text('');
+        usernameValid = false;
+      }
+    });
+
+    $('#email').on('input', function () {
+      const email = $(this).val();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        $('#email-message').text('❌ Invalid email format').removeClass('text-success').addClass('text-danger');
+        emailValid = false;
+        return;
+      }
+      $.ajax({
+        url: '/validate-email/',
+        data: { 'email': email },
+        dataType: 'json',
+        success: function (data) {
+          if (data.exists && email !== currentEmail) {
+            $('#email-message').text('❌ Email already exists').removeClass('text-success').addClass('text-danger');
+            emailValid = false;
+          } else {
+            $('#email-message').text('✅ Email is valid').removeClass('text-danger').addClass('text-success');
+            emailValid = true;
+          }
+        }
+      });
+    });
+
+    $('#phone').on('input', function () {
+      const phone = $(this).val();
+      const isValidPhone = /^\d{10}$/.test(phone);
+      if (!isValidPhone) {
+        $('#phone-message').text('❌ Enter a valid 10-digit phone number').removeClass('text-success').addClass('text-danger');
+        phoneValid = false;
+        return;
+      }
+      $.ajax({
+        url: '/validate-phone/',
+        data: { 'phone': phone },
+        dataType: 'json',
+        success: function (data) {
+          if (data.exists && phone !== currentPhone) {
+            $('#phone-message').text('❌ Phone number already used').removeClass('text-success').addClass('text-danger');
+            phoneValid = false;
+          } else {
+            $('#phone-message').text('✅ Phone number is valid').removeClass('text-danger').addClass('text-success');
+            phoneValid = true;
+          }
+        }
+      });
+    });
+
+    $('#editForm').on('submit', function (e) {
+      if (!usernameValid || !emailValid || !phoneValid) {
+        e.preventDefault();
+        alert("❌ Please fix all validation errors before submitting.");
+      }
+    });
+  });
+</script>
+
+<!-- footer -->
+<footer class="bg-dark text-white text-center py-3">
+  <p>&copy; 2025 InsureNow. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

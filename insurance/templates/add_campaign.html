@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Campaign</title>
+</head>
+<style>
+        body {
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: rgba(244, 241, 241, 0.86);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(252, 248, 248, 0.97);
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 999;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><b>InsureNow</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarMenu">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="{% url 'adminhome' %}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'add_agent' %}">Add Agent</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'agent_details' %}">Agent Details</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'add_campaign' %}">Add Campaign</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'show_campaign' %}">Campaign</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'client_application_details' %}">Client Application Details</a></li>
+      <li class="nav-item"><a class="nav-link text-danger" href="{% url 'logoutadmin' %}">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Add campaign section -->
+ <br>
+ <h2 class="text-center">Campaign Section</h2>
+ <div class="form-container">
+ <form action="{% url 'add_campaign_details' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="">Campaign Name:</label>
+        <input type="text" name="cname" class="form-control" id="">
+    </div>
+    <div class="form-group">
+        <label for="">Place:</label>
+        <input type="text" name="place" class="form-control" id="">
+    </div>
+    <div class="form-group">
+        <label for="">Time:</label>
+        <input type="time" name="time" class="form-control" id="">
+    </div>
+    <div class="form-group">
+  <label for="agent">Select Agent:</label>
+  <select class="form-control" name="agent_id" id="agent" required>
+    <option value="">-- Select Agent --</option>
+    {% for agent in agents %}
+      <option value="{{ agent.id }}">{{ agent.first_name }} {{ agent.last_name }}</option>
+    {% endfor %}
+  </select>
+</div>
+    <div class="form-group">
+        <br>
+        <input type="file" name="image" id="">
+    </div>
+    <button type="submit" class="btn btn-success btn-block">SUBMIT</button>
+ </form>
+ <br><br>
+     {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endfor %}
+{% endif %}
+ </div>
+
+<!-- footer section -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2025 InsureNow. All rights reserved.</p>
+  </footer>
+</body>
+</html>
